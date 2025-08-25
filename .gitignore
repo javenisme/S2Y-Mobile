@@ -28,7 +28,7 @@ xcuserdata/
 
 # Documentation generation
 *.doccarchive
-docs/
+
 
 # UITests Project
 !UITests.xcodeproj
