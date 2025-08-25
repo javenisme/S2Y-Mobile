@@ -25,7 +25,8 @@ let package = Package(
     products: [
         .library(name: "Spezi", targets: ["Spezi"]),
         .library(name: "SpeziTesting", targets: ["SpeziTesting"]),
-        .library(name: "XCTSpezi", targets: ["XCTSpezi"])
+        .library(name: "XCTSpezi", targets: ["XCTSpezi"]),
+        .executable(name: "SpeziRunner", targets: ["SpeziRunner"]) 
     ],
     dependencies: [
         .package(url: "https://github.com/StanfordSpezi/SpeziFoundation.git", from: "2.1.8"),
@@ -42,6 +43,10 @@ let package = Package(
             ],
             swiftSettings: [.enableUpcomingFeature("ExistentialAny")],
             plugins: [] + swiftLintPlugin()
+        ),
+        .executableTarget(
+            name: "SpeziRunner",
+            dependencies: []
         ),
         .target(
             name: "SpeziTesting",
