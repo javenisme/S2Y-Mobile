@@ -84,6 +84,13 @@ let package = Package(
             ],
             swiftSettings: [.enableUpcomingFeature("ExistentialAny")],
             plugins: [] + swiftLintPlugin()
+        ),
+        .testTarget(
+            name: "HealthAssistantKitTests",
+            dependencies: [
+                .target(name: "HealthAssistantKit")
+            ],
+            swiftSettings: [.enableUpcomingFeature("ExistentialAny")]
         )
     ]
 )
