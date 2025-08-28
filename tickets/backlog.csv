@@ -1,0 +1,14 @@
+id,title,description,type,priority,estimate,labels
+T-001,Set up HealthKit permissions and read steps/HR/sleep,Request authorization and implement basic HK queries for steps, heart rate, and sleep; add local encryption.,feature,P0,3d,iOS;HealthKit;Security
+T-002,Create HealthAssistantKit module target and scaffolding,Add SwiftPM target with stubs: HealthKitModule, QueryPlanner, LLMOrchestrator, Aggregators, InsightEngine.,chore,P0,1d,SwiftPM;Architecture
+T-003,Define metric dictionary and units schema,Create JSON/Swift types for metric whitelist, units, sampling window rules.,feature,P0,2d,Schema;Data
+T-004,Implement caching and encrypted storage,Introduce SQLCipher/Keychain for tokens and data cache; abstractions and tests.,feature,P1,4d,Security;Storage
+T-005,LLM prompt templates and function calling schemas,Write system/user prompts and JSON Schemas for tools (readMetric, aggregate, compare, correlate).,feature,P0,2d,LLM;Prompts
+T-006,Query planning from NL to intent,Implement parsing to identify metric, time window, aggregation; confidence and clarification.,feature,P0,5d,LLM;NLP
+T-007,Function calling and tool execution,Wire LLM to call toolbox; JSON Schema validation, retries, error handling.,feature,P0,4d,LLM;Runtime
+T-008,Trend/compare visual data prep,Produce timeseries and comparison datasets; annotations for significant changes.,feature,P1,3d,Charts;UX
+T-009,Insight and suggestion generation,Rules + LLM synthesis for actionable advice; include evidence and next steps.,feature,P1,5d,Insights;UX
+T-010,Privacy and data policy docs,Document data handling, minimization, consent, export/delete flows.,docs,P0,1d,Compliance
+T-011,Evaluation dataset and metrics,Create 30+ canonical queries; measure correctness and latency; CI reports.,chore,P1,3d,QA;Bench
+T-012,Natural language examples and playground,In-app examples and test harness for NL queries.,feature,P2,2d,DX;Demo
+T-013,Background sync and reminders,Schedule background fetch and user notifications for goals.,feature,P2,4d,Reminders
