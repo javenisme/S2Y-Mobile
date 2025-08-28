@@ -78,3 +78,24 @@
 - 自定义 `Standard` 以定义全局协作契约
 - 扩展能力（新 PropertyWrapper）以接入其他系统能力
 - 借助依赖构建器约束模块集合的协议能力
+
+## 健康助手（Health Assistant）模块设计
+- 新增 Swift 模块 `HealthAssistantKit`（SwiftPM Target）
+  - 组成：
+    - `HealthKitModule`：封装 HealthKit 授权、查询与本地加密缓存
+    - `QueryPlanner`：将自然语言解析为指标、时间窗、统计函数与过滤条件
+    - `LLMOrchestrator`：提示模板、函数调用 Schema、结果校验与后处理
+    - `Aggregators`：均值、总量、移动均值、分位数、周对周、月对月
+    - `Correlator`：步数-睡眠-心率等相关性检验与可解释说明
+    - `InsightEngine`：洞察与个性化建议（SMART 目标）、提醒/复盘接口
+    - `Visualization`：趋势/对比数据准备与注释（供 SwiftUI 图表层使用）
+- 交互与数据流：
+  1) 用户自然语言查询 → `QueryPlanner` 解析意图
+  2) `LLMOrchestrator` 通过函数调用选择工具（读取/聚合/可视化）
+  3) `HealthKitModule` 读出原始数据 → `Aggregators/Correlator` 计算
+  4) `InsightEngine` 生成洞察与行动建议 → 提供结构化结果与摘要
+  5) SwiftUI 层渲染趋势/对比图，并可展开“数据依据与计算细节”
+- 安全与合规：
+  - 端侧优先存储，Keychain/SQLCipher 加密；网络仅发必要摘要（可配置）
+  - 工具调用严格 JSON Schema 校验，指标白名单与单位规范化
+  - 显式用途与可撤销；导出与删除能力

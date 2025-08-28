@@ -44,6 +44,15 @@ let package = Package(
             swiftSettings: [.enableUpcomingFeature("ExistentialAny")],
             plugins: [] + swiftLintPlugin()
         ),
+        .target(
+            name: "HealthAssistantKit",
+            dependencies: [
+                .target(name: "Spezi"),
+                .product(name: "OrderedCollections", package: "swift-collections")
+            ],
+            swiftSettings: [.enableUpcomingFeature("ExistentialAny")],
+            plugins: [] + swiftLintPlugin()
+        ),
         .executableTarget(
             name: "SpeziRunner",
             dependencies: []
@@ -75,6 +84,13 @@ let package = Package(
             ],
             swiftSettings: [.enableUpcomingFeature("ExistentialAny")],
             plugins: [] + swiftLintPlugin()
+        ),
+        .testTarget(
+            name: "HealthAssistantKitTests",
+            dependencies: [
+                .target(name: "HealthAssistantKit")
+            ],
+            swiftSettings: [.enableUpcomingFeature("ExistentialAny")]
         )
     ]
 )

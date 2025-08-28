@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Health Assistant Function Schemas",
+  "type": "object",
+  "properties": {
+    "readMetric": {
+      "type": "object",
+      "properties": {
+        "metric": { "type": "string", "enum": ["steps", "heart_rate", "resting_heart_rate", "sleep_duration", "active_energy", "weight"] },
+        "start": { "type": "string", "format": "date-time" },
+        "end": { "type": "string", "format": "date-time" },
+        "granularity": { "type": "string", "enum": ["minute", "hour", "day", "week"] }
+      },
+      "required": ["metric", "start", "end"],
+      "additionalProperties": false
+    },
+    "aggregate": {
+      "type": "object",
+      "properties": {
+        "function": { "type": "string", "enum": ["mean", "sum", "min", "max", "median", "moving_mean"] },
+        "window": { "type": "string", "pattern": "^\\d+(d|w|m)$" },
+        "metric": { "type": "string" }
+      },
+      "required": ["function", "metric"],
+      "additionalProperties": false
+    },
+    "compare": {
+      "type": "object",
+      "properties": {
+        "metric": { "type": "string" },
+        "periodA": { "type": "object", "properties": { "start": {"type": "string", "format": "date-time" }, "end": {"type": "string", "format": "date-time" } }, "required": ["start", "end"], "additionalProperties": false },
+        "periodB": { "type": "object", "properties": { "start": {"type": "string", "format": "date-time" }, "end": {"type": "string", "format": "date-time" } }, "required": ["start", "end"], "additionalProperties": false }
+      },
+      "required": ["metric", "periodA", "periodB"],
+      "additionalProperties": false
+    },
+    "correlate": {
+      "type": "object",
+      "properties": {
+        "metricX": { "type": "string" },
+        "metricY": { "type": "string" },
+        "start": { "type": "string", "format": "date-time" },
+        "end": { "type": "string", "format": "date-time" },
+        "granularity": { "type": "string", "enum": ["day", "week"] }
+      },
+      "required": ["metricX", "metricY", "start", "end"],
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
